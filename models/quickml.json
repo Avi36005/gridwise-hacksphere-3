@@ -1,0 +1,145 @@
+{
+  "deployed": {
+    "algorithm": "CatBoost Regression",
+    "pipeline": "gridwise_catboost",
+    "endpoint": "gridwise-demand-catboost",
+    "settings": "learning rate 0.03 · max depth 3 · L2 leaf regularization 3 · RMSE loss · 1000 iterations (CatBoost default)",
+    "data_center": "IN",
+    "training_rows": 4000,
+    "features": 14
+  },
+  "quickml_cv": {
+    "method": "QuickML 5-fold cross-validation on consecutive date blocks",
+    "models": [
+      {
+        "name": "CatBoost Regression (deployed)",
+        "cv_rmse_kw": 9.23,
+        "folds_kw": [
+          8.7,
+          8.78,
+          8.63,
+          9.32,
+          10.74
+        ],
+        "max_error_kw": 54.92
+      },
+      {
+        "name": "AutoML · GB Regression + Autolearn",
+        "cv_rmse_kw": 9.83,
+        "folds_kw": [
+          8.69,
+          8.86,
+          8.6,
+          10.36,
+          12.63
+        ],
+        "max_error_kw": 60.96
+      }
+    ]
+  },
+  "local_selection": {
+    "method": "4 expanding chronological folds of 400 h on the first 3,200 rows; locked last-800-hour holdout",
+    "models": [
+      {
+        "name": "CatBoost Regression",
+        "params": "iterations 1000 · learning rate 0.03 · depth 3 · L2 3",
+        "cv_rmse_kw": 9.97,
+        "folds_kw": [
+          8.9,
+          11.52,
+          10.02,
+          9.42
+        ],
+        "holdout_rmse_kw": 11.01
+      },
+      {
+        "name": "XGB Regression",
+        "params": "1200 trees · learning rate 0.03 · depth 3",
+        "cv_rmse_kw": 10.69,
+        "folds_kw": [
+          9.17,
+          11.69,
+          11.49,
+          10.43
+        ],
+        "holdout_rmse_kw": 13.16
+      },
+      {
+        "name": "LGBM Regression",
+        "params": "800 trees · learning rate 0.03 · 7 leaves",
+        "cv_rmse_kw": 10.82,
+        "folds_kw": [
+          8.51,
+          11.59,
+          11.82,
+          11.36
+        ],
+        "holdout_rmse_kw": 15.31
+      },
+      {
+        "name": "Random-Forest Regression",
+        "params": "QuickML defaults (100 trees)",
+        "cv_rmse_kw": 10.96,
+        "folds_kw": [
+          9.25,
+          11.61,
+          11.33,
+          11.66
+        ],
+        "holdout_rmse_kw": 12.57
+      }
+    ]
+  },
+  "baseline_holdout_rmse_kw": 45.85,
+  "updated": "2026-10-25",
+  "ensemble": {
+    "method": "Each model is refit only on the hours before a split and scored on the hours after it: the late spring and summer weeks most like the hidden test (both average 29 °C). CatBoost uses the QuickML settings; the linear member is ordinary least squares on 52 features (an hourly profile plus an hourly cooling slope). The served forecast is their plain average, with no tuned weight.",
+    "splits": [
+      "last 800 hours",
+      "last 600 hours",
+      "last 400 hours"
+    ],
+    "models": [
+      {
+        "name": "CatBoost + Linear (average)",
+        "rmse_kw": [
+          9.22,
+          9.03,
+          8.4
+        ],
+        "served": true
+      },
+      {
+        "name": "Linear regression · hourly cooling",
+        "rmse_kw": [
+          9.27,
+          9.51,
+          8.58
+        ],
+        "served": false
+      },
+      {
+        "name": "CatBoost regression alone",
+        "rmse_kw": [
+          10.74,
+          9.57,
+          8.64
+        ],
+        "served": false
+      }
+    ],
+    "linear_features": 52,
+    "linear_dataset": "reports/quickml_linear_features.csv",
+    "linear": {
+      "pipeline": "gridwise_linear",
+      "endpoint": "gridwise-demand-linear",
+      "algorithm": "Linear Regression",
+      "quickml_internal": {
+        "rmse_kw": 8.7695,
+        "mae_kw": 6.9778,
+        "r2": 0.9696
+      },
+      "published": "2026-10-25"
+    }
+  }
+}
