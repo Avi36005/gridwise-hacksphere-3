@@ -1,0 +1,8 @@
+.venv
+.env
+.env.*
+__pycache__
+.pytest_cache
+.git
+tests
+reports/holdout_predictions.csv
