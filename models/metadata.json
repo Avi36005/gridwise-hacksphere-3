@@ -1,0 +1,195 @@
+{
+  "model_name": "Extra Trees",
+  "trained_at": "2026-10-24T08:26:22.857262+00:00",
+  "training_rows": 4000,
+  "development_rows": 3200,
+  "holdout_rows": 800,
+  "training_start": "2014-12-31 23:00:00",
+  "training_end": "2015-06-16 14:00:00",
+  "holdout_start": "2015-05-14 07:00:00",
+  "holdout_end": "2015-06-16 14:00:00",
+  "holdout": {
+    "rmse_kw": 13.694970609435298,
+    "mae_kw": 10.702315613769914,
+    "r2": 0.9498009412474792
+  },
+  "baseline_holdout": {
+    "rmse_kw": 45.8505785628378,
+    "mae_kw": 31.214202438530055,
+    "r2": 0.4373180222528792
+  },
+  "leaderboard": [
+    {
+      "name": "Extra Trees",
+      "cv_rmse_kw": 11.800272527168206,
+      "folds": [
+        {
+          "rmse_kw": 10.066827925490225,
+          "mae_kw": 7.6344247480480805,
+          "r2": 0.9374352449396965
+        },
+        {
+          "rmse_kw": 12.764117187638654,
+          "mae_kw": 9.311908313063443,
+          "r2": 0.9184180320841288
+        },
+        {
+          "rmse_kw": 12.56987246837574,
+          "mae_kw": 9.60811064498049,
+          "r2": 0.9474935941453824
+        }
+      ]
+    },
+    {
+      "name": "Histogram Gradient Boosting",
+      "cv_rmse_kw": 12.215930826851183,
+      "folds": [
+        {
+          "rmse_kw": 10.194489203970637,
+          "mae_kw": 7.827626465464239,
+          "r2": 0.9358383684687362
+        },
+        {
+          "rmse_kw": 13.43029983447564,
+          "mae_kw": 9.549788725094498,
+          "r2": 0.9096799792854886
+        },
+        {
+          "rmse_kw": 13.023003442107271,
+          "mae_kw": 10.125877036272431,
+          "r2": 0.9436397567317116
+        }
+      ]
+    },
+    {
+      "name": "LightGBM \u00b7 15 leaves",
+      "cv_rmse_kw": 12.503472885483683,
+      "folds": [
+        {
+          "rmse_kw": 10.161898255794135,
+          "mae_kw": 7.792820361853121,
+          "r2": 0.9362479516949438
+        },
+        {
+          "rmse_kw": 13.698927004966235,
+          "mae_kw": 9.783442634593518,
+          "r2": 0.9060307599609867
+        },
+        {
+          "rmse_kw": 13.649593395690683,
+          "mae_kw": 10.561003681352531,
+          "r2": 0.9380858411254303
+        }
+      ]
+    },
+    {
+      "name": "LightGBM \u00b7 31 leaves",
+      "cv_rmse_kw": 12.68888096650477,
+      "folds": [
+        {
+          "rmse_kw": 10.159727863088492,
+          "mae_kw": 7.781927649702363,
+          "r2": 0.9362751812933554
+        },
+        {
+          "rmse_kw": 14.459718947813284,
+          "mae_kw": 10.364381830164612,
+          "r2": 0.8953034634900078
+        },
+        {
+          "rmse_kw": 13.447196088612534,
+          "mae_kw": 10.404774970270426,
+          "r2": 0.9399083645354199
+        }
+      ]
+    },
+    {
+      "name": "Ridge regression",
+      "cv_rmse_kw": 28.59808466192516,
+      "folds": [
+        {
+          "rmse_kw": 28.541065589049712,
+          "mae_kw": 22.326641004480006,
+          "r2": 0.49709630623635215
+        },
+        {
+          "rmse_kw": 28.309478111504866,
+          "mae_kw": 22.286017552771906,
+          "r2": 0.5986933671581365
+        },
+        {
+          "rmse_kw": 28.943710285220902,
+          "mae_kw": 22.276958421488477,
+          "r2": 0.7216065883923373
+        }
+      ]
+    }
+  ],
+  "features": [
+    "ambient_temp_c",
+    "humidity_pct",
+    "solar_irradiance_wm2",
+    "hour",
+    "day_of_week",
+    "is_weekend",
+    "hour_sin",
+    "hour_cos",
+    "week_sin",
+    "week_cos",
+    "year_sin",
+    "year_cos",
+    "cooling_degrees",
+    "heating_degrees"
+  ],
+  "parameters": {
+    "bootstrap": false,
+    "ccp_alpha": 0.0,
+    "criterion": "squared_error",
+    "max_depth": null,
+    "max_features": 1.0,
+    "max_leaf_nodes": null,
+    "max_samples": null,
+    "min_impurity_decrease": 0.0,
+    "min_samples_leaf": 3,
+    "min_samples_split": 2,
+    "min_weight_fraction_leaf": 0.0,
+    "monotonic_cst": null,
+    "n_estimators": 350,
+    "n_jobs": 2,
+    "oob_score": false,
+    "random_state": 42,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "weather_medians": {
+    "ambient_temp_c": 18.545,
+    "humidity_pct": 70.745,
+    "solar_irradiance_wm2": 8.0
+  },
+  "input_sha256": "a6bd0c612936c79caa67c07f278731c51be9b2eb83a5951e03fb14b82ee3a122",
+  "validation": "Three expanding chronological folds on the first 80%. Select by mean fold RMSE. Evaluate the selected model once on the last 20%. Refit on all labeled rows for inference. Sample test CSV has no labels and is never scored.",
+  "fold_periods": [
+    {
+      "train_end": "2015-03-15 06:00:00",
+      "validation_start": "2015-03-15 07:00:00",
+      "validation_end": "2015-04-04 06:00:00"
+    },
+    {
+      "train_end": "2015-04-04 06:00:00",
+      "validation_start": "2015-04-04 07:00:00",
+      "validation_end": "2015-04-24 06:00:00"
+    },
+    {
+      "train_end": "2015-04-24 06:00:00",
+      "validation_start": "2015-04-24 07:00:00",
+      "validation_end": "2015-05-14 06:00:00"
+    }
+  ],
+  "versions": {
+    "python": "3.12.14",
+    "scikit_learn": "1.7.2",
+    "lightgbm": "4.7.0",
+    "numpy": "2.5.4",
+    "pandas": "2.3.3"
+  }
+}
