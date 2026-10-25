@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "project": 1,
+    "env": 1
+  },
+  "actives": {
+    "project": 1,
+    "env": 1
+  },
+  "projects": [
+    {
+      "idx": 1,
+      "id": "102738000000013053",
+      "name": "Gridwise",
+      "domain": {
+        "id": "50047143069",
+        "name": "gridwise-60093139810.development"
+      },
+      "timezone": "Asia/Kolkata",
+      "env": [
+        {
+          "idx": 1,
+          "id": "60093139810",
+          "name": "Development",
+          "type": 3
+        }
+      ]
+    }
+  ]
+}
