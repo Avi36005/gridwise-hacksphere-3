@@ -321,15 +321,18 @@ gridwise-hacksphere-3/
 │   ├── build_appsail.sh        # Packages production AppSail bundle with manylinux wheels
 │   └── exchange_quickml_code.py# Swaps one-time Zoho OAuth code for refresh token
 │
-├── docs/                       # Extended documentation
-│   └── QUICKML.md              # Complete guide on QuickML pipeline creation & hyperparams
-│
 ├── presentation/               # Submission assets
 │   └── Gridwise_Kryptonite_Deck.pdf # Competition pitch slide deck
-│
 ├── requirements.txt            # Production runtime dependencies
 ├── requirements-dev.txt        # Development dependencies (pytest, etc.)
-└── catalyst.json               # Zoho Catalyst AppSail deployment manifest
+├── catalyst.json               # Zoho Catalyst AppSail deployment manifest
+├── PROBLEM_STATEMENT.pdf       # Official BITS Pilani & Zoho Catalyst competition PDF
+│
+├── docs/                       # Extended documentation
+│   ├── QUICKML.md              # Complete guide on QuickML pipeline creation & hyperparams
+│   └── GITHUB_OSINT_HACKSPHERE.md # Competitive intelligence & OSINT benchmark review
+│
+└── app 2/                      # Preserved baseline milestone snapshot (earlier prototype)
 ```
 
 ---
